@@ -1,0 +1,101 @@
+body{
+    background:  #212f3d ;
+}
+.main_landing_container{
+   
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:  #17202a ;
+}
+
+.contenedor_main{
+    
+    width: 1500px;
+    height: 800px;
+    border-radius: 15px;
+    background: #fff;
+    display: grid;
+    
+    grid-template-columns: 60% 40%;
+}
+
+.contenedor_main .conten_login_formulario,.conten_imagen_main{
+   
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.conten_login_formulario img{
+    border-radius: 10px 0 0 10px;
+}
+
+.formulario{
+    border : solid .3px rgba(0,0,0,.5);
+    border-radius: 5px;
+    width: 500px;
+    height: 700px;
+}
+
+.option{
+    margin-top: 20px;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.items_option{
+    
+    padding: 5px;
+    transition: all 0.3s;
+    cursor: pointer;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.items_option:hover{
+    background: #00c0f3;
+    color: #fff;
+    padding: 10px 10px;
+    border-radius: 5px;
+    box-shadow:  0 4px 2px rgb(0, 0, 0 , .5);
+}
+.items_option.active{
+    background: #00c0f3;
+    color: #fff;
+    padding: 10px 10px;
+    border-radius: 5px;
+    box-shadow:  0 4px 2px rgb(0, 0, 0 , .5);
+}
+
+.conten_formulario{
+    padding: 10px;
+    
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.logo_main{
+   
+    height: 100px;
+   
+    position: relative;
+    top: 25px;
+    width: 200px;
+    margin: 20px auto;
+}
+
+.logo_main img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
