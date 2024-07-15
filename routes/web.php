@@ -10,6 +10,7 @@ use App\Http\Controllers\OptometristaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\ReporteController;
 use App\Models\Disponibilidad;
 
 
@@ -66,4 +67,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('ventas/' , [VentaController::class , 'index'])->name('ventas.index');
     Route::get('ventas/{id}' , [VentaController::class , 'show'])->name('ventas.show');
+
+    //modulo de reportes 
+    Route::get('reportes', [ReporteController::class , 'index'])->name('reporte.index');
+    Route::get('reportes/usuario', [ReporteController::class , 'usuario'])->name('reporte.usuario');
+    Route::get('reportes/usuario/pdf', [ReporteController::class , 'usuariopdf'])->name('reporte.usuariopdf');
+    Route::get('reportes/producto', [ReporteController::class , 'productopdf'])->name('reporte.productopdf');
+    Route::get('reportes/producto/pdf', [ReporteController::class , 'productopdf_generar'])->name('reporte.productopdf_generar');
 });

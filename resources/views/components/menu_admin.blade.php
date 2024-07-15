@@ -40,6 +40,12 @@
                     Ventas
                 </a>
             </li>
+
+            <li class="{{ Route::is('reporte.index*') ? 'active' : "" }} " >
+                <a href="{{route('reporte.index')}}">
+                    Reportes
+                </a>
+            </li>
             
             <li><a href="{{route('logout')}}">Cerrar Sesión</a></li>
         </ul>

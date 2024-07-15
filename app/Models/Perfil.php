@@ -20,5 +20,9 @@ class Perfil extends Model
         'imagen'
     ];
 
+    public function ususario()
+    {
+        return $this->belongsTo(User::class , 'id');
+    }
     
 }
