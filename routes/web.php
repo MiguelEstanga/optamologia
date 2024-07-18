@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\CarritoController;
 use App\Models\Disponibilidad;
 
 
@@ -57,16 +58,17 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post("productos/editar_producto/{id}", [ProductoController::class ,'updated'] )->name('producto.put');
     Route::post("productos/eliminar_producto/{id}", [ProductoController::class ,'delete'] )->name('producto.delete');
     
-    Route::get('productos/vender/{id}' , [ProductoController::class , 'vender'])->name('venta');
-    Route::post('productos/vender/{id}' , [ProductoController::class , 'vender_store'])->name('venta.store');
+    Route::get('carrito/lista' , [ProductoController::class , 'vender'])->name('venta');
+    Route::post('productos/vender' , [ProductoController::class , 'vender_store'])->name('venta.store');
     //pacientes optometrista 
 
     Route::get('optometrista/citas/paciente' , [OptometristaController::class , 'pacientes'])->name('pacientes.index');
     Route::get('optometrista/citas/evaluar/{id}', [OptometristaController::class , 'evaluar_cita'])->name('optometrista.evaluar_citas');
     Route::post('optometrista/citas/evaluar/{id}', [OptometristaController::class , 'evaluar_cita_store'])->name('optometrista.evaluar_citas_store');
 
-    Route::get('ventas/' , [VentaController::class , 'index'])->name('ventas.index');
+    Route::get('ventas' , [VentaController::class , 'index'])->name('ventas.index');
     Route::get('ventas/{id}' , [VentaController::class , 'show'])->name('ventas.show');
+    Route::get('ventas/pdf/{id}' , [VentaController::class , 'showpdf'])->name('ventas.showpdf');
 
     //modulo de reportes 
     Route::get('reportes', [ReporteController::class , 'index'])->name('reporte.index');
@@ -74,4 +76,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('reportes/usuario/pdf', [ReporteController::class , 'usuariopdf'])->name('reporte.usuariopdf');
     Route::get('reportes/producto', [ReporteController::class , 'productopdf'])->name('reporte.productopdf');
     Route::get('reportes/producto/pdf', [ReporteController::class , 'productopdf_generar'])->name('reporte.productopdf_generar');
+
+    //
+    Route::post('carrito' ,[CarritoController::class ,'agregar'] )->name('carrito.agregar');
+    Route::post('carrito/editar' ,[CarritoController::class ,'editar'] )->name('carrito.editar');
+    Route::post('carrito/eliminar' ,[CarritoController::class ,'eliminar'] )->name('carrito.destroy');
+    
 });

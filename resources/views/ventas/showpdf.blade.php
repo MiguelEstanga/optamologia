@@ -1,39 +1,38 @@
-<img src="{{ public_path() . "/storage/imagen_sistema/logo.png"   }}" alt="pdf"  class="imagen_header" />
+
+    <img src="{{ public_path() . "/storage/imagen_sistema/logo.png"   }}" alt="pdf"  class="imagen_header" />
+
 
 <div>
-    <h2 style="">
-        Usuarios {{$sexo}}
-    </h2>
-    <table>
-        <thead>
-            <tr>
-                <td>Nombre</td>
-                <td>Cédula</td>
-                <td>Direccion</td>
-                 <td>Telefono</td>
-                 <td>Correo</td>
-                  <td>Fecha de nacimiento</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($data as $item)
-            <tr>
-                <td>{{$item->ususario->name}}</td>
-                <td>{{$item->cedula}}</td>
-                <td>{{$item->direccion}}</td>
-                 <td>{{$item->ususario->telefono}}</td>
-                 <td>{{$item->ususario->email}}</td>
-                  <td>{{$item->fecha_nacimiento}}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    
+<table class="table table-dark" style="margin: 30px 0;">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cedula</th>
+                        <th>Télefono</th>
+                        
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                            <td>{{ $venta->fecha }}</td>
+                            <td>{{ $venta->nombre_cliente }}</td>
+                            <td>{{ $venta->apellido_cliente }}</td>
+                            <td>{{ $venta->cedula }}</td>
+                            <td>{{ $venta->telefono }}</td>
+                            
+                            <td>{{ $venta->cantidad }}</td>
+                            <td>{{ $venta->cantidad * $venta->producto->precio }}BS</td>
+                 </tr>
+     </tbody>
+</table>
 </div>
 <style>
-    h2{
-        text-align: center;
-    }
-  .imagen_header{
+   .imagen_header{
        
        
        position: relative;
@@ -42,6 +41,7 @@
         height: 90px;
     }
   table {
+        margin: 20px 0; 
             width: 100%;  /* Ajusta el ancho de la tabla al contenedor padre */
             border-collapse: collapse;  /* Combina los bordes de las celdas adyacentes */
             margin: 0 auto;  /* Agrega espacio alrededor de la tabla */

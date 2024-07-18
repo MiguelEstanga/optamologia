@@ -18,7 +18,8 @@ class PerfilController extends Controller
     {
          
          $perfil = Perfil::where('id_user', auth()->id());
-       
+    
+        
          if(!$perfil->exists())
          {
             Perfil::create([
@@ -34,7 +35,7 @@ class PerfilController extends Controller
          }
          
          $actulizarPerfil = Perfil::where( 'id_user', auth()->id() )->first();
-         $actulizarPerfil->nombre_completo = $request->nombre_completo;
+        // $actulizarPerfil->nombre_completo = $request->nombre_completo;
          $actulizarPerfil->direccion = $request->direccion;
          $actulizarPerfil->sexo = $request->sexo;
          $actulizarPerfil->edad = $request->edad;
@@ -43,6 +44,7 @@ class PerfilController extends Controller
          $user = User::find(Auth::user()->id);
          $user->telefono = $request->telefono;
          $user->email = $request->email;
+         $user->name = $request->name;
          $user->save();
         return back()->with('mensaje', 'Datos  actualizados con éxito');
     

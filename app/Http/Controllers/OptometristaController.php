@@ -29,7 +29,7 @@ class OptometristaController extends Controller
 
     public function usuarios()
     {
-        $usuarios = User::withoutRole('SuperAdmin')->get();
+        $usuarios = User::where('id_estado' , 1)->withoutRole('SuperAdmin')->get();
         
         return view('usuario.index' , [
             'usuarios' => $usuarios,
@@ -77,6 +77,7 @@ class OptometristaController extends Controller
 
     public function cambiar_cita(Request $request)
     {
+        if($request->fecha == null) return back()->with('success' , 'La fecha no puede ser un campo vacio');
         $id_disponibilidad = Disponibilidad::find($request->hora);
         $dia = date('w', strtotime($request->dia));
         if($dia == 6) return back()->with('danger' , 'No se laburan los dias de semana por favor elija otro dia ');

@@ -130,7 +130,7 @@
     <div class="container m-top-20" style="margin-top:20px;">
         <x-boton
         width="100%"
-        text="{{$edit ? 'Modificar' : 'Registrar usuario'}}"
+        text="{{$edit ? 'Modificar' : 'Registrar producto'}}"
         color="{{ $edit == true ? '#186a3b' :   '#e67e22' }} "
     />
     </div>

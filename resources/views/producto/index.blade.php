@@ -29,9 +29,15 @@
                     <td>{{$producto->precio ?? 'No encontrado'}}</td>
                     <td>{{$producto->estado->estado ?? 'No encontrado'}}</td>
                     <td>
-                        <a href="{{route('venta' , $producto->id)}}" class="btn btn-success">
-                            Vender
-                        </a>
+                        <form action="{{route('carrito.agregar')}}" method="POST" >
+                            @csrf
+                            <input hidden type="text" name="producto" value="{{$producto->id}}">
+                            <input hidden type="text" name="cantidad" value="1">
+                            <button class="btn btn-success">
+                               Agregar a la compra
+                            </button>
+                        </form>
+                      
                     </td>
                     <td>
                         <form action="{{route("producto.edit" , $producto->id)}}" method="get" >

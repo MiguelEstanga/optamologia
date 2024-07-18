@@ -19,16 +19,17 @@
             <tbody>
                 @foreach($ventas as $venta)
                     <tr>
-                        <td>{{ $venta->fecha }}</td>
-                        <td>{{ $venta->nombre_cliente }}</td>
-                        <td>{{ $venta->apellido_cliente }}</td>
-                        <td>{{ $venta->cedula }}</td>
-                        <td>{{ $venta->telefono }}</td>
+                        <td>{{ $venta->venta->fecha }}</td>
+                        <td>{{ $venta->venta->nombre_cliente }}</td>
+                        <td>{{ $venta->venta->apellido_cliente }}</td>
+                        <td>{{ $venta->venta->cedula }}</td>
+                        <td>{{ $venta->venta->telefono }}</td>
                         
-                        <td>{{ $venta->cantidad }}</td>
-                        <td>{{ $venta->total }}</td>
+                        <td>{{ $venta->venta->cantidad }}</td>
+                        <td>{{  $venta->venta->cantidad * $venta->producto->precio }}BS</td>
+                        
                         <td>
-                            <a href="{{route('ventas.show' , $venta->id_productos)}}">
+                            <a href="{{route('ventas.show' , $venta->venta->id)}}">
                                 Ver
                             </a>
                         </td>

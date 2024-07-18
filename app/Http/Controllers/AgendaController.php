@@ -29,8 +29,6 @@ class AgendaController extends Controller
     {
         $user = User::find($request->id);
         //return $request->all();
-     
-       
         $agenga = Aegenda::create([
             "fecha" => $request->fecha,
             "id_user" => $request->id,

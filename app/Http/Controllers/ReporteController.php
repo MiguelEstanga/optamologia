@@ -22,12 +22,13 @@ class ReporteController extends Controller
     public function usuariopdf(Request $request)
     {
         $usuario = [];
-      
+           
            $usuario = Perfil::where('sexo' , $request->sexo)->get();
            $pdf = PDF::loadView(
             'reporte.reporte_usuario_pdf',
             [
                 'data' => $usuario ,
+                'sexo' => $request->sexo
             ]
             )
             ->setPaper('letter', 'portrait');

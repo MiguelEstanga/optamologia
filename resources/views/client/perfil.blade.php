@@ -28,12 +28,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    @if( isset(Auth::user()->perfil) )
-                                        {{Auth::user()->perfil->nombre_completo}}
-                                    @else
-                                        {{Auth::user()->nombre}}
-                                    @endif
-                                   
+                                    {{Auth::user()->name}}
                                 </td>
                                 <td>{{Auth::user()->email}}</td>
                                 <td>{{Auth::user()->telefono ?? ''}}</td>
@@ -53,7 +48,7 @@
                     <h3>
                  
                         @if( isset(Auth::user()->perfil) )
-                            Felisidades tus has rellenado tu perfil!
+                            Felicidades tus has rellenado tu perfil!
                         @else
                             Rellenar perfil 
                         @endif
@@ -91,10 +86,7 @@
                             </div>
                         @endif
                         <div class="row margin-top">
-                            <div class="col-md-6">
-                                <label for="nombre">Nombre Completo</label>
-                                <input type="text" class="form-control" value="{{Auth::user()->perfil->nombre_completo ?? ""}}" placeholder="Nombre" name="nombre_completo">
-                            </div>
+                           
                             <div class="col-md-6">
                                  <label for="email">Dirección de vivienda</label>
                                 <input type="text" class="form-control" name="direccion" value="{{Auth::user()->perfil->direccion ?? ""}}" placeholder="direccion de vivienda">
@@ -113,7 +105,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="container">
+                        <div class="container" style="margin:20px 0;">
                             <x-boton
                                 width="100%"
                                 text="Actualizar datos de perfil"

@@ -15,7 +15,7 @@
                
                     <div class="container">
                         <h2 class="alert "  style="text-align: center">
-                              Datos de inicio
+                            Datos de inicio de sesión
                         </h2>
                     </div>
                     <div class="row">
@@ -132,8 +132,11 @@
                                 </option>
                                 @endforeach
                             @else
-                                @foreach( $roles as $rele )
-                                    <option value="{{$rele->name}}">{{$rele->name}}</option>
+                                @foreach( $roles as $role )
+                                     @if( $role->name != "SuperAdmin")
+                                         <option value="{{$role->name}}">{{$role->name}}</option>
+                                     @endif
+                                    
                                 @endforeach
                             @endif
                           

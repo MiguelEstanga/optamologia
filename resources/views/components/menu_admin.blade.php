@@ -24,7 +24,7 @@
             </li>
             <li class="{{ Route::is('producto*') ? 'active' : "" }} }}">
                 <a href="{{route('producto')}}">
-                    Prescribir lentes
+                    Productos
                 </a>
             </li>
            

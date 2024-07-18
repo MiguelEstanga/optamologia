@@ -7,6 +7,8 @@ use App\Models\Producto;
 use App\Models\TipoMontura;
 use App\Models\DescripcionLentes;
 use App\Models\Venta;
+use App\Models\Factura;
+use App\Models\carrito;
 
 class ProductoController extends Controller
 {
@@ -94,31 +96,68 @@ class ProductoController extends Controller
         return back()->with('success' , 'Producto eliminado correctamente');
     }
 
-    public function vender($id)
+    public function vender()
     {
-        $producto = Producto::find($id);
+            $carrito = carrito::all();
+            $total = 0 ; 
+            if( count($carrito) > 0 )
+            {
+                for($i = 0 ; $i < count($carrito) ; $i++ )
+                {
+                    $total += $carrito[$i]->cantidad * $carrito[$i]->producto->precio;
+                }
+            }
+           
         return view('producto.venta' , [
-            'producto' => $producto
+           'carrito' => carrito::all(),
+           'total' => $total
         ]);
     }
 
-    public function vender_store( $id ,Request $request )
+    public function vender_store( Request $request )
     {
-        $producto = Producto::find($id);
-        if($producto->cantidad < $request->cantidad) return back()->with('danger' , 'La cantidad no se encuentra disponible');
-        $producto->cantidad = $producto->cantidad - $request->cantidad;
-        $producto->save();
-        Venta::create([ 
+      
+        $carrito = carrito::all();
+        //return count($carrito);
+        if(count($carrito) === 0 ) return  back()->with('success' , 'El carrito esta vacio');
+
+        $total = 0;
+         for($i = 0 ; $i < count($carrito) ; $i++ )
+         {
+             $total += $carrito[$i]->cantidad * $carrito[$i]->producto->precio;
+         }
+         
+       
+        //if($producto->cantidad < $request->cantidad) return back()->with('danger' , 'La cantidad no se encuentra disponible');
+        $venta = Venta::create([ 
             'fecha' => $request->fecha ,
             'nombre_cliente' => $request->nombre ,
             'apellido_cliente' => $request->apellido ,
             'cedula' => $request->cedula,
             'telefono' => $request->telefono,
-            'cantidad' => $request->cantidad,
-            'total' => $request->cantidad * $producto->precio,
-            'id_productos' => $producto->id
+            'cantidad' => 1,
+            'total' => 1,
+            'id_productos' =>2
         ]);
+         foreach( $carrito as $producto ){
+            $producto = Producto::find($producto->id_productos);
+            $producto->cantidad = $producto->cantidad - $producto->cantidad;
+            $producto->save();
 
+            Factura::create(
+                [
+                    'id_ventas' => $venta->id,
+                    'id_productos' => $producto->id,
+                ]
+            );
+           
+         }
+
+         foreach($carrito as $c)
+         {
+             $c->delete();
+         }
+         
         return  back()->with('success' , 'Venta realizada correctamente');
     }
 }

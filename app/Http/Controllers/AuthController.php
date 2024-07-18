@@ -17,18 +17,14 @@ class AuthController extends Controller
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $role =  Auth::user()->getRoleNames()->first();
            
-           if($role === 'Obtometrista'){
-            return redirect()->route('usuarios.optometrista');
-           }
-
-           if($role === 'SuperAdmin'){
-            return redirect()->route('usuarios.optometrista');
-           }
+          
 
            if($role === 'cliente')
            {
             return redirect()->route('perfil.index');
            }
+
+           return redirect()->route('usuarios.optometrista');
           
         }
         return redirect()->back()->with('error', 'Usuario o contraseña incorrectos');
@@ -58,6 +54,9 @@ class AuthController extends Controller
     public function store_usuario(Request $request)
     {
         //return $request->all();
+        $perfil = Perfil::where('cedula' , $request->cedula)->exist();
+        if(!$perfil) return back()->with('success' , 'La cédula esta registrada');
+       
         $user =User::create([
             'name' => $request->nombre,
             'email' => $request->email,

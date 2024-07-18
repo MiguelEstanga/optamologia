@@ -13,7 +13,7 @@
                     <th>Telefono</th>
                     <th>Estado</th>
                     <th>Nombre</th>
-                    <th>Anular cita</th>
+                    <th>Estado de la cita</th>
                     <th>Reprogromar cita</th>
                     <th>Asignar optometrista</th>
                     
@@ -27,6 +27,7 @@
                         <td>{{$cita->Telefono}}</td>
                         <td>{{$cita->estado->estado}}</td>
                         <td>{{$cita->nombre_completo}}</td>
+                       
                         <td>
                             <a style="color: aliceblue; text-decoration:none;" href="{{route('anular_cita' , $cita->id)}}">
                                 @switch($cita->id_estado)
@@ -37,7 +38,7 @@
                                          Renovar
                                         @break
                                     @default
-                                        
+                                        Realizado
                                 @endswitch
                               
                             </a>
@@ -48,6 +49,7 @@
                                 Reprograma cita
                             </button>
                         </td>
+                      
                         <td>
                             <a href="{{route('optometrista.asignar' , $cita->id)}}">Asignar</a>
                         </td>
@@ -89,10 +91,7 @@
                         </div>
                    </form>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+             
               </div>
             </div>
         </div>          

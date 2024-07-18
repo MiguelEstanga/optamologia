@@ -4,88 +4,70 @@
     <div class="container-fluid">
         @include('producto.modulos')
         <div class="container-fluid row">
-            <div class="col-md-6">
-                <div class="preview_container">
-                    <div class="preview">
-                        <div class="avatar_preview">
-                            <img 
-                             src="{{ asset('storage/' . $producto->imagen ?? 'avatars/avatar.png') }}"
-                            id="imagen_preview"
-                            style="
-                                width: 100%;
-                                height: 100%;
-                                border-radius: 50%;
-                               
-                            "
-                            alt=""
-                        />
-                    </div>
-                    <div class="data_perfil">
-                        <div class="titulo">
-                            Còdigo de referencia  :
-                        </div>
-                        <div class="valor" id="codigo_value">
-                            {{$producto->codigo ?? "No encontrado"}}
-                        </div>
-                    </div>
-                    <div class="data_perfil">
-                        <div class="titulo">
-                            Marca  :
-                        </div>
-                        <div class="valor" id="marca_value">
-                            {{ $producto->marca ?? "No encontrado" }}
-                        </div>
-                    </div>
-                    <div class="data_perfil">
-                        <div class="titulo">
-                            Cantidad  :
-                        </div>
-                        <div class="valor" id="cantidad_value">
-                            {{ $producto->cantidad ?? "No encontrado" }}
-                        </div>
-                    </div>
-                    <div class="data_perfil">
-                        <div class="titulo">
-                            Descripciòn :
-                        </div>
-                        <div class="valor" id="descripcion_value">
-                            {{ $producto->descripcio ?? "No encontrado" }}
-                        </div>
+                
+               
+         <div class="col-md-6">
+            <table  class="table table-dark" style="color:#fff">
+                <thead class="table table-dark table-striped">
+                    <tr>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
                         
-                    </div>
-                    <div class="data_perfil">
-                        <div class="titulo">
-                            Precio  :
-                        </div>
-                        <div class="valor" id="precio_value">
-                            {{ $producto->precio ?? "No encontrado" }}
-                        </div>
-                    </div>
-                    <div class="data_perfil">
-                        <div class="titulo">
-                            Tipo :
-                        </div>
-                        <div class="valor" id="tipo_value">
-                            {{ $producto->tipo ?? "No encontrado" }}
-                        </div>
-                    </div>
-                    <div class="data_perfil">
-                        <div class="titulo">
-                            Descripciòn montura  :
-                        </div>
-                        <div class="valor" id="descripcion_montura_value">
-                                {{ $producto->descripcion_montura ?? "No encontrado" }}
-                        </div>
-                        
-                    </div>
-                       
-                  </div>
-                </div>
-            </div>
-            
+                        <th>
+                            Precio
+                        </th>
+                        <th>
+                            Eliminar
+                        </th>
+                        <th>
+                            Agregar
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($carrito as $producto)
+                    <tr>
+                      <td>
+                        {{$producto->producto->descripcion}}
+                      </td>
+                      <td>
+                        {{$producto->cantidad}}
+                      </td>
+                     
+                      <td>
+                        {{$producto->producto->precio}}
+                      </td>
+                      <td>
+                        <form action="{{route('carrito.destroy')}}" method="POST">
+                            @csrf
+                            <input type="text" name="producto"  value="{{$producto->producto->id}}" hidden>
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                      </td>
+                        <form  action="{{route('carrito.editar')}}" method="POST">
+                            @csrf
+                            <td>
+                                <input type="number" class="form-control" value="{{$producto->cantidad}}" name="cantidad">
+                                <input hidden type="text" value="{{$producto->id_productos}}" name="producto">
+                            </td>
+                            <td>
+                               <button class="btn btn-success">
+                                   agregar
+                               </button>
+                            </td>
+                        </form>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+         </div>
          
          <div class="col-md-6 formulario_container_edit">
-                <form action="{{route('venta.store' , $producto->id)}}" method="POST">
+                <form action="{{route('venta.store')}}" method="POST">
                     @csrf
                     <div class="container row container-flex-center" style="margin-top:20px ; color:#fff;">
                         <div class="col-md-4">
@@ -127,20 +109,13 @@
                             <input required type="number" name="telefono" class="form-control"> 
                         </div>
                     </div>
-                    <div class="container row container-flex-center" style="margin-top:20px ; color:#fff;">
-                        <div class="col-md-4">
-                            <label for="">Cantidad</label>
-                        </div>
-                        <div class="col-md-6">
-                            <input required type="number" name="cantidad" class="form-control" id="cantidad"> 
-                        </div>
-                    </div>
+                  
                     <div class="container row container-flex-center" style="margin-top:20px ; color:#fff;">
                         <div class="col-md-4">
                             <label for="">Totla a pagar</label>
                         </div>
                         <div class="col-md-6" id="total">
-                            
+                            {{$total}} BS
                         </div>
                     </div>
                     <div class="container" style="margin-top:20px ; color:#fff;">
@@ -157,15 +132,5 @@
         </div>
     </div>
 
-    <script>
-       addEventListener("DOMContentLoaded", (event) => {
-        cantidad.addEventListener('input' , function (){
-            if(cantidad.value > 0){
-                total.innerHTML = cantidad.value * {{$producto->precio}}
-            }
-            
-        })
-       });
-
-    </script>
+    
 @endsection

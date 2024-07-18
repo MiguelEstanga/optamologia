@@ -19,9 +19,17 @@
                         <td>{{$cita->hora->horas}}</td>
                         <td>{{$cita->Telefono}}</td>
                         <td>{{$cita->estado->estado}}</td>
+                        @if($cita->id_estado === 7 )
                         <td>
-                            <a href="{{route('client_ver_citas' , $cita->id) }}">Ver respuesta</a>
+                           Sin respuesta 
                         </td>
+                        @endif
+                        @if($cita->id_estado === 6 )
+                            <td>
+                                <a href="{{route('client_ver_citas' , $cita->id) }}">Ver respuesta</a>
+                            </td>
+                        @endif
+                       
                     </tr>
                 @endforeach
             </tbody>

@@ -30,6 +30,7 @@
     </thead>
     <tbody>
         @foreach($usuarios as $usuario)
+            
             <tr>
                 <td>{{ $usuario->name }}</td>
                 <td>{{ $usuario->email }}</td>

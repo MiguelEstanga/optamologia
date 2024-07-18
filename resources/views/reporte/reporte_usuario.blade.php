@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
        <form action="{{route('reporte.usuariopdf')}}">
-           <select name="tipo" id="" class="form-select">
+           <select name="sexo" id="" class="form-select">
            
              <option value="Masculino">Masculino</option>
              <option value="Femenino">Femenino</option>

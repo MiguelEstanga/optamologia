@@ -1,3 +1,5 @@
+<img src="{{ public_path() . "/storage/imagen_sistema/logo.png"   }}" alt="pdf"  class="imagen_header" />
+
 <div>
     <h2>
         Productos
@@ -21,14 +23,21 @@
                 <td>{{$item->cantidad}}</td>
                  <td>{{$item->descripcion}}</td>
                  <td>{{$item->tipo}}</td>
-                  <td>{{$item->precio}}</td>
+                  <td>{{$item->precio}}BS</td>
             </tr>
             @endforeach
         </tbody>
     </table>
 </div>
 <style>
-  
+  .imagen_header{
+       
+       
+       position: relative;
+       left: 25%;
+        width: 400px;
+        height: 90px;
+    }
   table {
             width: 100%;  /* Ajusta el ancho de la tabla al contenedor padre */
             border-collapse: collapse;  /* Combina los bordes de las celdas adyacentes */
