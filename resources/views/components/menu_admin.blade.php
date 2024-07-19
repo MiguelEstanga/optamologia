@@ -1,5 +1,5 @@
 <div>
-    <div class="avatar">
+    <div class="">
        <x-perfli_carta
         :usuario="Auth::user()"
         :perfil="Auth::user()->perfil"

@@ -76,6 +76,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('reportes/usuario/pdf', [ReporteController::class , 'usuariopdf'])->name('reporte.usuariopdf');
     Route::get('reportes/producto', [ReporteController::class , 'productopdf'])->name('reporte.productopdf');
     Route::get('reportes/producto/pdf', [ReporteController::class , 'productopdf_generar'])->name('reporte.productopdf_generar');
+    Route::get('reportes/ventas', [ReporteController::class , 'ventas'])->name('reporte.ventas');
+   Route::get('reportes/ventas/pdf', [ReporteController::class , 'ventaspdf_generar'])->name('reporte.ventaspdf_generar');
 
     //
     Route::post('carrito' ,[CarritoController::class ,'agregar'] )->name('carrito.agregar');

@@ -16,6 +16,7 @@ class Factura extends Model
     public function venta(){
         return $this->belongsTo(Venta::class ,'id_ventas');
     }
+    
     public function producto()
     {
         return $this->belongsTo(Producto::class , 'id_productos');

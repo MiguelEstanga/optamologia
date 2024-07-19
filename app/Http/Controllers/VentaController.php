@@ -10,19 +10,28 @@ class VentaController extends Controller
 {
     public function index()
     {
+       
         return view('ventas.index',[
-            'ventas' => Factura::all()
+            'ventas' =>  Venta::all()
         ]);
     }
 
     public function show($id)
     {
         $venta =  Venta::find($id);
+        $_ventas = $venta->facturas;
+        $total = 0;
+        for($i= 0 ; $i<count($_ventas) ; $i++)
+        {   
+            $total += $_ventas[$i]->venta->producto->precio * $_ventas[$i]->venta->cantidad;
+        }
+        
         return view(
             'ventas.show',
             [
-                'venta' => $venta,
-                'producto' => $venta->producto ?? []
+                'venta' =>  $venta->facturas,
+                'total' =>  $total ?? 0,
+                'id'=>$id
             ]
         );
     }
@@ -30,12 +39,19 @@ class VentaController extends Controller
     public function showpdf($id)
     {
         $venta =  Venta::find($id);
-
+        $_ventas = $venta->facturas;
+        $total = 0;
+        for($i= 0 ; $i<count($_ventas) ; $i++)
+        {   
+            $total += $_ventas[$i]->venta->producto->precio * $_ventas[$i]->venta->cantidad;
+        }
+        
         $pdf = PDF::loadView(
             'ventas.showpdf',
             [
-                'venta' => $venta,
-              //  'producto' => $venta->producto ?? []
+                'venta' =>  $venta->facturas,
+                'total' =>  $total ?? 0,
+                'id'=>$id
             ]
         )->setPaper('letter', 'portrait');
 

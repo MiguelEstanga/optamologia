@@ -19,41 +19,45 @@
                         
                         <th>Cantidad</th>
                         <th>Total</th>
-                        <th>Comprobante de venta</th>
+                      
                         
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($venta as $venta) 
                         <tr>
-                            <td>{{ $venta->fecha }}</td>
-                            <td>{{ $venta->nombre_cliente }}</td>
-                            <td>{{ $venta->apellido_cliente }}</td>
-                            <td>{{ $venta->cedula }}</td>
-                            <td>{{ $venta->telefono }}</td>
+                            <td>{{ $venta->venta->fecha }}</td>
+                            <td>{{ $venta->venta->nombre_cliente }}</td>
+                            <td>{{ $venta->venta->apellido_cliente }}</td>
+                            <td>{{ $venta->venta->cedula }}</td>
+                            <td>{{ $venta->venta->telefono }}</td>
                             
-                            <td>{{ $venta->cantidad }}</td>
-                            <td>{{ $venta->cantidad * $venta->producto->precio }}BS</td>
-                            <td>
-                                <a class="btn btn-success" href="{{route('ventas.showpdf' ,$venta->id )}}" target="_blanck">
-                                    ver
-                                </a>
-                            </td> 
+                            <td>{{ $venta->venta->cantidad }}</td>
+                            <td>{{ $venta->venta->cantidad * $venta->venta->producto->precio }}BS</td>
+                            
                         </tr>
+                    @endforeach
+                   
                 </tbody>
             </table>
+            <div class="container-fluid" 
+                style="
+                    display:flex;
+                    justify-content:end;
+                    color:#fff;
+                    font-size:20px;
+                "
+            >
+              Total: {{$total}} BS
+            </div>
+            <div class="container-fluid">
+                <a href="{{route('ventas.showpdf' , $id)}}" class="btn btn-success">
+                    Generar comprobante
+                </a>
+            </div>
          </div>
         </div>
     </div>
 
-    <script>
-       addEventListener("DOMContentLoaded", (event) => {
-        cantidad.addEventListener('input' , function (){
-            if(cantidad.value > 0){
-                total.innerHTML = cantidad.value * {{$producto->precio}}
-            }
-            
-        })
-       });
-
-    </script>
+ 
 @endsection

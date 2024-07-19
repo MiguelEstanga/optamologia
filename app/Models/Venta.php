@@ -25,5 +25,10 @@ class Venta extends Model
         return $this->belongsTo(Producto::class , 'id_productos');
     }
 
+    public function facturas()
+    {
+        return $this->hasMany(Factura::class ,'id_ventas');
+    }
+
    
 }

@@ -6,8 +6,9 @@
         <select name="tipo" id="" class="form-select">
         
           <option value="1">Mas vendido</option>
-          <option value="2">Disponible</option>
-          <option value="3">Agotados</option>
+          
+          <option value="3">Menos vendidos</option>
+          <option value="2">Agotados</option>
         </select>
         <div class="container-fluid container-flex " style="margin: 30px 0">
          <button class="btn btn-primary">

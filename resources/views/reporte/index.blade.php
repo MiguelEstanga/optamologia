@@ -1,6 +1,7 @@
 @extends('layout.panelAdmin')
 
 @section('content')
+   
     <div class="container-fluid">
         <ul class="list-group">
             <li class="list-group-item active" aria-current="true">An active item</li>
@@ -16,9 +17,12 @@
                 </a>      
             </li>
             <li class="list-group-item">
-                Reportes de ventas
+                <a href="{{route('reporte.ventas')}}">
+                    Reportes de ventas
+                </a>
             </li>
            
           </ul>
     </div>
+    
 @endsection

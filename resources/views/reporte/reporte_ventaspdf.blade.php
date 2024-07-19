@@ -1,58 +1,44 @@
-
-    <img src="{{ public_path() . "/storage/imagen_sistema/logo.png"   }}" alt="pdf"  class="imagen_header" />
-
+<img src="{{ public_path() . "/storage/imagen_sistema/logo.png"   }}" alt="pdf"  class="imagen_header" />
 
 <div>
-    
-    <table class="table table-dark">
+    <h2 style="">
+        Usuarios 
+    </h2>
+    <table>
         <thead>
             <tr>
-                <th>Fecha</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Cedula</th>
-                <th>Télefono</th>
-                
-                <th>Cantidad</th>
-                <th>Total</th>
-              
-                
+                <td>Fecha de compra</td>
+                <td>Nombre cliente</td>
+                <td>Apellido cliente</td>
+                <td>Cédula</td>
+                 <td>Telefono</td> 
+                 <td>Producto</td> 
+                 <td>precio</td>
             </tr>
         </thead>
         <tbody>
-            @foreach($venta as $venta) 
-                <tr>
-                    <td>{{ $venta->venta->fecha }}</td>
-                    <td>{{ $venta->venta->nombre_cliente }}</td>
-                    <td>{{ $venta->venta->apellido_cliente }}</td>
-                    <td>{{ $venta->venta->cedula }}</td>
-                    <td>{{ $venta->venta->telefono }}</td>
-                    
-                    <td>{{ $venta->venta->cantidad }}</td>
-                    <td>{{ $venta->venta->cantidad * $venta->venta->producto->precio }}BS</td>
-                    
-                </tr>
-            @endforeach
-           
+          @foreach ($ventas as $item)
+         
+            <tr>
+                <td>{{$item->fecha}}</td>
+                <td>{{$item->nombre_cliente}}</td>
+                <td>{{$item->apellido_cliente}}</td>
+                <td>{{$item->cedula}}</td>
+                <td>{{$item->telefono}}</td>
+                <td>{{$item->producto->descripcion}}</td>
+                <td>{{$item->producto->precio}}BS</td>
+             
+            </tr>
+         
+          @endforeach
         </tbody>
     </table>
-    <div class="total">
-        Total: {{$total}} BS
-    </div>
-    
-    
 </div>
 <style>
-    .total{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        
-        margin: 20px 0;
-        position: relative;
-        text-align: right;
+    h2{
+        text-align: center;
     }
-   .imagen_header{
+  .imagen_header{
        
        
        position: relative;
@@ -61,7 +47,6 @@
         height: 90px;
     }
   table {
-        margin: 20px 0; 
             width: 100%;  /* Ajusta el ancho de la tabla al contenedor padre */
             border-collapse: collapse;  /* Combina los bordes de las celdas adyacentes */
             margin: 0 auto;  /* Agrega espacio alrededor de la tabla */

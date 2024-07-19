@@ -139,9 +139,10 @@ class ProductoController extends Controller
             'total' => 1,
             'id_productos' =>2
         ]);
-         foreach( $carrito as $producto ){
-            $producto = Producto::find($producto->id_productos);
-            $producto->cantidad = $producto->cantidad - $producto->cantidad;
+         foreach( $carrito as $c ){
+            $producto = Producto::find($c->id_productos);
+            $producto->cantidad = $producto->cantidad - $c->cantidad;
+            $producto->venta += $c->cantidad  ;
             $producto->save();
 
             Factura::create(

@@ -2,7 +2,7 @@
 
 <div>
     <h2>
-        Productos
+        Productos {{$titulo ?? "s"}}
     </h2>
     <table>
         <thead>
@@ -11,6 +11,7 @@
                 <td>Marca</td>
                 <td>Cantidad</td>
                  <td>descripcion</td>
+                 <td>Ventas</td>
                  <td>tipo</td>
                   <td>precio</td>
             </tr>
@@ -22,6 +23,7 @@
                 <td>{{$item->marca}}</td>
                 <td>{{$item->cantidad}}</td>
                  <td>{{$item->descripcion}}</td>
+                 <td>{{$item->venta}}</td>
                  <td>{{$item->tipo}}</td>
                   <td>{{$item->precio}}BS</td>
             </tr>

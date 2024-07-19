@@ -17,7 +17,8 @@ class Producto extends Model
         'descripcion_montura',
         'precio',
         'imagen',
-        'id_estado'
+        'id_estado',
+        'venta'
     ];
 
     public function estado()
