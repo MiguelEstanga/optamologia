@@ -23,9 +23,9 @@
                             $estado = "";
                             $agenda = Aegenda::find($paciente->id_agenda);
                         @endphp
-                        <td>{{$agenda->estado->estado}}</td>
+                        <td>{{$agenda->estado->estado ?? ""}}</td>
                         <td>{{$paciente->cliente->name ?? ''}}</td>
-                        <td>{{$paciente->agenda->fecha}}</td>
+                        <td>{{$paciente->agenda->fecha ??  ""}}</td>
                         <td>{{$paciente->agenda->hora->horas ?? ''}}</td>
                         <td><a href="{{route("optometrista.evaluar_citas" , $paciente->agenda->id ?? 0 )}}">Evaluar</a></td>
                     </tr>

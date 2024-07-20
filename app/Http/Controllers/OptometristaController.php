@@ -95,7 +95,7 @@ class OptometristaController extends Controller
         $agenda =  Aegenda::find($id);
         $usuario = User::find($agenda->usuario->id)  ?? [];
         $perfil = $usuario->perfil;
-        $optometrista = User::withoutRole([  'superadmin' , 'cliente' , 'Jefe de ventas'])->get();
+        $optometrista = User::where('id_estado' , 1)->withoutRole([  'superadmin' , 'cliente' , 'Jefe de ventas'])->get();
         return view('optometrista.asignar_optometrista' , [
             'usuario' => $usuario,
             'perfil' => $perfil,

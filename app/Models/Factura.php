@@ -10,7 +10,8 @@ class Factura extends Model
     use HasFactory;
     protected $fillable = [
         'id_ventas',
-        'id_productos'
+        'id_productos',
+        'cantidad'
     ];
 
     public function venta(){

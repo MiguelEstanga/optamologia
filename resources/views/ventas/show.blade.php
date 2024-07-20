@@ -16,8 +16,9 @@
                         <th>Apellido</th>
                         <th>Cedula</th>
                         <th>Télefono</th>
-                        
+                        <td>Producto</td>
                         <th>Cantidad</th>
+                        <th>Precio</th>
                         <th>Total</th>
                       
                         
@@ -31,9 +32,10 @@
                             <td>{{ $venta->venta->apellido_cliente }}</td>
                             <td>{{ $venta->venta->cedula }}</td>
                             <td>{{ $venta->venta->telefono }}</td>
-                            
-                            <td>{{ $venta->venta->cantidad }}</td>
-                            <td>{{ $venta->venta->cantidad * $venta->venta->producto->precio }}BS</td>
+                            <td>{{ $venta->producto->nombre }}</td>
+                            <td>{{ $venta->cantidad }}</td>
+                            <td>{{ $venta->producto->precio }}</td>
+                            <td>{{ $venta->cantidad * $venta->producto->precio }}BS</td>
                             
                         </tr>
                     @endforeach

@@ -34,7 +34,7 @@
                     Pacientes 
                 </a>
             </li>
-
+            
             <li class="{{ Route::is('ventas.index*') ? 'active' : "" }} " >
                 <a href="{{route('ventas.index')}}">
                     Ventas

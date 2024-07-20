@@ -110,15 +110,17 @@
         let URL = `{{env("APP_URL")}}`
          async function asignar(event)
         {
+            
             let id =event.target.classList['0'];
             let storage = `{{asset('storage')}}`;
             let URL = `{{env('APP_URL')}}`
-            
+            console.log(id)
             let response = await fetch(`${URL}/ususario/${id}`)
             let parse = await response.json()
-           
+            console.log(parse.perfil.imagen)
             if(parse.protocolo === 201)
             {
+                
                 Oimg.src = `${storage}/${parse.perfil.imagen}`
                 OEmail.innerHTML = parse.usuario.email
                 Onombre.innerHTML = parse.usuario.name
@@ -128,9 +130,7 @@
                 btn_asignar.hidden = false
                 btn_asignar.style.color = "#fff"
                
-            }
-          
-            
+            }    
         }
         
     </script>

@@ -54,7 +54,7 @@ class AuthController extends Controller
     public function store_usuario(Request $request)
     {
         //return $request->all();
-        $perfil = Perfil::where('cedula' , $request->cedula)->exist();
+        $perfil = Perfil::where('cedula' , $request->cedula)->exists();
         if(!$perfil) return back()->with('success' , 'La cédula esta registrada');
        
         $user =User::create([

@@ -19,9 +19,26 @@ class ProductoController extends Controller
         return view(
             'producto.index',
             [
-                'data' => $productos
+                'data' => $productos ?? 'No hay productos',
+                'buscar' => false,
+                'encontrado' => false
             ]
         );
+    }
+
+    public function  buscar(Request $request)
+    {
+         $productos = Producto::where('codigo' , 'like' ,$request->codigo)->get();
+        //return $productos->exists();
+        return view(
+            'producto.index',
+            [
+                'data' => $productos ?? 'No hay productos',
+                'buscar' => false,
+                'encontrado' => false
+            ]
+        );
+        
     }
 
     public function formulario_crear()
@@ -38,6 +55,8 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //return $request->all();
+        $check = Producto::where('codigo'  ,$request->codigo)->first();
+        if($check) return back()->with('success' , 'El código no se puede repetir');
         $imagen = "";
 
         if($request->imagen != null){
@@ -46,6 +65,7 @@ class ProductoController extends Controller
             $imagen = "avatars/avatar.png";
         }
         Producto::create([
+            'nombre' => $request->nombre,
             'codigo' => $request->codigo,
             'marca' => $request->marca,
             'cantidad' => $request->cantidad,
@@ -85,6 +105,7 @@ class ProductoController extends Controller
         $producto->descripcion_montura = $request->descripcion_montura;
         $producto->marca = $request->marca;
         $producto->precio = $request->precio;
+        $producto->nombre = $request->nombre;
         $producto->save();
         return back()->with('success' , 'Producto actulizado correctamente');
     }   

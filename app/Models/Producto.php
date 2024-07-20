@@ -18,7 +18,8 @@ class Producto extends Model
         'precio',
         'imagen',
         'id_estado',
-        'venta'
+        'venta',
+        'nombre'
     ];
 
     public function estado()

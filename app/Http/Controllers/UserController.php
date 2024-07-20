@@ -51,12 +51,15 @@ class UserController extends Controller
 
     public function find($email)
     {
+        //return response()->json([$email , 1]);
         if( $email == null ) return json_encode(['response' => 'ok' ,"mensage"=> "Campo vacio"]);
         $usuario = User::where('email' , $email )->exists();
+       
         if(!$usuario) return json_encode([ 'response' => 'ok' , 'mensage' => 'Usuario no existe', 'protocolo' => 404  ]);
         
         $usuario = User::where('email' , $email )->first();
-        return json_encode([
+      //  return response()->json($usuario);
+        return response()->json([
             'response' => 'ok' ,
             'mensage' => 'Usuario existe' ,
             'usuario' => $usuario,

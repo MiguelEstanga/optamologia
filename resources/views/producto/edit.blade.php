@@ -37,6 +37,13 @@
                         </div>
                         <div class="data_perfil">
                             <div class="titulo">
+                                Nombre del producto  :
+                            </div>
+                            <div class="valor" id="nombre_value">
+                            </div>
+                        </div>
+                        <div class="data_perfil">
+                            <div class="titulo">
                                 Cantidad  :
                             </div>
                             <div class="valor" id="cantidad_value">
@@ -139,6 +146,8 @@
             defaultData('precio' , 'precio_value');
             defaultData('precio' , 'precio_value');
             defaultData('descripcion_montura' , 'descripcion_montura_value')
+            defaultData('_nombre' , 'nombre_value')
+
 
             eventoChange('codigo' , 'codigo_value');
             eventoChange('marca' , 'marca_value');
@@ -147,6 +156,7 @@
             eventoChange('precio' , 'precio_value');
             eventoChange('precio' , 'precio_value');
             eventoChange('descripcion_montura' , 'descripcion_montura_value')
+            eventoChange('_nombre' , 'nombre_value')
             
             
            

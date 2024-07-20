@@ -23,6 +23,14 @@
     </div>
     <div class="container row container-flex-center" style="margin-top:20px;">
         <div class="col-md-4">
+            <label for="nombre">Nombre</label>
+        </div>
+        <div class="col-md-6">
+            <input required type="text" name="nombre" id="_nombre" value="{{$data->nombre ?? ''}}" class="form-control">
+        </div>
+    </div>
+    <div class="container row container-flex-center" style="margin-top:20px;">
+        <div class="col-md-4">
             <label for="nombre">Marca</label>
         </div>
         <div class="col-md-6">

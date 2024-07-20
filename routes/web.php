@@ -12,8 +12,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\CarritoController;
-use App\Models\Disponibilidad;
-
+use App\Models\Producto;
+use App\Models\Factura;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 Route::get("/" , [LandingController::class , 'Landing'])->name('login');
 
@@ -55,6 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get("productos/crear_producto", [ProductoController::class ,'formulario_crear'] )->name('producto_create');
     Route::post("productos/crear_producto", [ProductoController::class ,'store'] )->name('producto.store');
     Route::get("productos/editar_producto/{id}", [ProductoController::class ,'edit'] )->name('producto.edit');
+    Route::get("productos/buscar", [ProductoController::class ,'buscar'] )->name('producto.buscar');
     Route::post("productos/editar_producto/{id}", [ProductoController::class ,'updated'] )->name('producto.put');
     Route::post("productos/eliminar_producto/{id}", [ProductoController::class ,'delete'] )->name('producto.delete');
     
@@ -84,4 +88,40 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('carrito/editar' ,[CarritoController::class ,'editar'] )->name('carrito.editar');
     Route::post('carrito/eliminar' ,[CarritoController::class ,'eliminar'] )->name('carrito.destroy');
     
+});
+
+Route::get('crear_tabla_nombre' , function (){
+    if(!Schema::hasColumn('productos' , 'nombre'))
+    {
+        Schema::table('productos', function (Blueprint $table) {
+            $table->string('nombre')->nullable();
+        });
+
+        $producto =Producto::all();
+
+        foreach ($producto as $items) {
+            $items->nombre = "lentes";
+            $items->save();
+        }
+
+       
+    }
+
+    if(!Schema::hasColumn('facturas' , 'cantidad'))
+    {
+        Schema::table('facturas', function (Blueprint $table) {
+            $table->string('cantidad')->nullable();
+        });
+
+        $factura =Factura::all();
+
+        foreach ($factura as $items) {
+            $items->cantidad = 1;
+            $items->save();
+        }
+
+        
+    }
+
+    return 'inyeccion lista';
 });

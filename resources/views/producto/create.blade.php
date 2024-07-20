@@ -20,11 +20,19 @@
                             alt=""
                         />
                     </div>
+                   
                     <div class="data_perfil">
                         <div class="titulo">
                             Còdigo de referencia  :
                         </div>
                         <div class="valor" id="codigo_value">
+                        </div>
+                    </div>
+                    <div class="data_perfil">
+                        <div class="titulo">
+                            Nombre del producto  :
+                        </div>
+                        <div class="valor" id="producto_value">
                         </div>
                     </div>
                     <div class="data_perfil">
@@ -131,6 +139,8 @@
             eventoChange('precio' , 'precio_value');
             eventoChange('precio' , 'precio_value');
             eventoChange('descripcion_montura' , 'descripcion_montura_value')
+            eventoChange('descripcion_montura' , 'descripcion_montura_value')
+            eventoChange('_nombre' , 'nombre_value')
        });
 
     </script>

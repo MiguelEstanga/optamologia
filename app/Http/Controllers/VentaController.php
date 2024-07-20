@@ -23,7 +23,7 @@ class VentaController extends Controller
         $total = 0;
         for($i= 0 ; $i<count($_ventas) ; $i++)
         {   
-            $total += $_ventas[$i]->venta->producto->precio * $_ventas[$i]->venta->cantidad;
+            $total += $_ventas[$i]->producto->precio * $_ventas[$i]->cantidad;
         }
         
         return view(
@@ -43,9 +43,8 @@ class VentaController extends Controller
         $total = 0;
         for($i= 0 ; $i<count($_ventas) ; $i++)
         {   
-            $total += $_ventas[$i]->venta->producto->precio * $_ventas[$i]->venta->cantidad;
+            $total += $_ventas[$i]->producto->precio * $_ventas[$i]->cantidad;
         }
-        
         $pdf = PDF::loadView(
             'ventas.showpdf',
             [
