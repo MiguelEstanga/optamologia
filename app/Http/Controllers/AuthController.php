@@ -55,7 +55,7 @@ class AuthController extends Controller
     {
         //return $request->all();
         $perfil = Perfil::where('cedula' , $request->cedula)->exists();
-        if(!$perfil) return back()->with('success' , 'La cédula esta registrada');
+        if($perfil) return back()->with('success' , 'La cédula esta registrada');
        
         $user =User::create([
             'name' => $request->nombre,
