@@ -137,8 +137,8 @@ class ProductoController extends Controller
 
     public function vender_store( Request $request )
     {
-      
-        $carrito = carrito::all();
+        //return $request;
+         $carrito = carrito::all();
         //return count($carrito);
         if(count($carrito) === 0 ) return  back()->with('success' , 'El carrito esta vacio');
 
@@ -170,6 +170,7 @@ class ProductoController extends Controller
                 [
                     'id_ventas' => $venta->id,
                     'id_productos' => $producto->id,
+                    'cantidad' => $c->cantidad
                 ]
             );
            
